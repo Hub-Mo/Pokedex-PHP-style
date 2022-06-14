@@ -8,15 +8,11 @@
     <script src="https://kit.fontawesome.com/9496963c6c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Style/style.css">
 </head>
-<?php
-$Api = file_get_contents("https://pokeapi.co/api/v2/pokemon/$userInput");
-$JsonApi = json_decode($Api);
 
-?>
 <body>
     <header>
         <div id="Header-container">
-        <h1></h1>
+        <h1>Pokedex</h1>
         </div>
     </header>
     <main>
@@ -34,7 +30,7 @@ $JsonApi = json_decode($Api);
 
             <div id="pokemon-img-container">
                 <h3><span id="pokemon-id"></span></h3>
-                <h2 id="pokemon-name">Ash</h2>
+                <h2 id="pokemon-name"><?php  ?></h2>
                 <div id="pokemon-display">
                     <img id='pokemon-image-bg' src="images/pokemon_bg.png" alt="rotate background">
                     <!-- <img src="images/pokemon_circle_bg.png" alt="background pokemon"> -->
@@ -58,10 +54,18 @@ $JsonApi = json_decode($Api);
             </article>
         </section>
         <section id="search-container">
-            <form>
-                <input id="search" name="input" placeholder="pokemon name or id" type="text"> 
-                <button id="run" >Search</button>
+            <form action="index.php" method="get">
+                <input  type="text" name="userInput" id="search"  placeholder="pokemon name or id"> 
+                <input type="submit" id="run" >
             </form>
+            <?php
+                $inputData = $_GET["userInput"];
+                $Api = file_get_contents("https://pokeapi.co/api/v2/pokemon/$inputData");
+                $JsonApi = json_decode($Api);
+                $pokeName = $JsonApi->name;
+                echo $pokeName
+
+            ?>            
 
         </section>
 
