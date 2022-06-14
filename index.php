@@ -8,17 +8,22 @@
     <script src="https://kit.fontawesome.com/9496963c6c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Style/style.css">
 </head>
+<?php
+$Api = file_get_contents("https://pokeapi.co/api/v2/pokemon/$userInput");
+$JsonApi = json_decode($Api);
+
+?>
 <body>
     <header>
         <div id="Header-container">
-        <h1>Pokédex</h1>
+        <h1></h1>
         </div>
     </header>
     <main>
         <section id="pokemon-section">
             <div id="type-container">
                 <div  id="pokemon-type">
-                    <h2>Type</h2>
+                    <h2></h2>
                     <ul id="type"></ul>    
                 </div>
                 <div id="previous-evo-container" >
@@ -54,13 +59,15 @@
         </section>
         <section id="search-container">
             <form>
-                <input id="search" placeholder="pokemon name or id" type="text">
+                <input id="search" name="input" placeholder="pokemon name or id" type="text"> 
                 <button id="run" >Search</button>
             </form>
 
         </section>
 
+
     </main>
-    <script src="JS/script.js" ></script>
+
+
 </body>
 </html>
